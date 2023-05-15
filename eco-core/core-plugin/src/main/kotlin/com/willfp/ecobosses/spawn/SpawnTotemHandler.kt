@@ -4,6 +4,7 @@ import com.willfp.eco.util.containsIgnoreCase
 import com.willfp.ecobosses.bosses.Bosses
 import com.willfp.ecobosses.events.BossSpawnEvent
 import com.willfp.ecobosses.util.SpawnTotem
+import com.willfp.libreforge.SimpleProvidedHolder
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.block.Block
@@ -28,11 +29,13 @@ class SpawnTotemHandler : Listener {
                     middle = event.block.getRelative(0, -1, 0)
                     bottom = event.block.getRelative(0, -2, 0)
                 }
+
                 1 -> {
                     top = event.block.getRelative(0, 2, 0)
                     middle = event.block.getRelative(0, 1, 0)
                     bottom = event.block
                 }
+
                 2 -> {
                     top = event.block.getRelative(0, 1, 0)
                     middle = event.block
@@ -52,7 +55,7 @@ class SpawnTotemHandler : Listener {
 
                 val player = event.player
 
-                if (!boss.spawnConditions.all { it.condition.isConditionMet(player, it.config) }) {
+                if (!boss.spawnConditions.areMet(player, SimpleProvidedHolder(boss))) {
                     return
                 }
 

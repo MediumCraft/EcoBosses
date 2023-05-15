@@ -3,7 +3,7 @@ package com.willfp.ecobosses.spawn
 import com.willfp.ecobosses.EcoBossesPlugin
 import com.willfp.ecobosses.bosses.bossEgg
 import com.willfp.ecobosses.events.BossSpawnEvent
-import com.willfp.libreforge.conditions.isMet
+import com.willfp.libreforge.SimpleProvidedHolder
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.block.Container
@@ -79,7 +79,7 @@ class SpawnEggHandler(
         }
 
         if (player != null) {
-            if (!boss.spawnConditions.isMet(player)) {
+            if (!boss.spawnConditions.areMet(player, SimpleProvidedHolder(boss))) {
                 return false
             }
         }
