@@ -40,6 +40,7 @@ allprojects {
         compileOnly("org.jetbrains:annotations:23.0.0")
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
         compileOnly("com.github.ben-manes.caffeine:caffeine:3.1.5")
+        implementation("com.willfp.libreforge:${libreforgeVersion}")
     }
 
     java {
@@ -51,6 +52,7 @@ allprojects {
         shadowJar {
             relocate("com.willfp.libreforge.loader", "com.willfp.ecomobs.libreforge.loader")
             relocate("com.willfp.modelenginebridge", "com.willfp.ecomobs.integrations.modelengine.bridge")
+            relocate("com.willfp.libreforge", "com.willfp.ecomobs.libreforge")
         }
 
         compileKotlin {
